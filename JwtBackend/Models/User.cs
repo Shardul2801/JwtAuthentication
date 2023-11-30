@@ -12,7 +12,10 @@ namespace JwtBackend.Models
         public string UserEmail {get;set;}
         public string MobileNumber {get;set;}
         public string Password {get;set;}
-        public string role {get;set;}
+        public string Role {get;set;}
+        public string? Token{get;set;}
+        public string? RefreshToken{get;set;}
+        public DateTime RefreshTokenExpiryTime{get;set;}
         public DateTime Created_at{get;set;}
         public DateTime Modified_at{get;set;}
         public string Created_by {get;set;}

@@ -1,10 +1,9 @@
-﻿using dotnetapp.Models;
+﻿using JwtBackend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using System.Text;
-using dotnetapp.Context;
 using Microsoft.EntityFrameworkCore;
-using dotnetapp.Helpers;
+using JwtBackend.Helpers;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System;
@@ -13,7 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using dotnetapp.Models;
  
 namespace dotnetapp.Controllers
 {
@@ -40,7 +38,7 @@ namespace dotnetapp.Controllers
                 return NotFound(new { Message = "User not found!" });
            
  
-            if(!(user.UserName== userObj.UserName && user.password==userObj.password))
+            if(!(user.UserName== userObj.UserName && user.Password==userObj.Password))
             {
                 return BadRequest("USER NAME PASSWORD DO NOT MATCH");
             }
@@ -94,10 +92,10 @@ namespace dotnetapp.Controllers
         }
  
         private Task<bool> CheckEmailIDExistAsync(string? emailID)
-            => _authContext.Users.AnyAsync(x => x.EmailID == emailID);
+            => _authContext.Users.AnyAsync(x => x.UserEmail == emailID);
  
         private Task<bool> CheckUserNameExistAsync(string? userName)
-            => _authContext.Users.AnyAsync(x => x.EmailID == userName);
+            => _authContext.Users.AnyAsync(x => x.UserEmail == userName);
  
         private static string CheckpasswordStrength(string pass)
         {
@@ -117,7 +115,7 @@ namespace dotnetapp.Controllers
             var key = Encoding.ASCII.GetBytes("lntmindtree.....");
             var identity = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Role, user.userRole),
+                new Claim(ClaimTypes.Role, user.Role),
                 new Claim(ClaimTypes.Name,$"{user.UserName}")
             });
  

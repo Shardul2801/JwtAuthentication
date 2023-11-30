@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt'
-
-import { TokenApiModel } from '../models/token-api.model';
+import { TokenApiModel } from '../models/tokenapi.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +15,7 @@ export class AuthService {
    }
 
   signUp(userObj: any) {
-    return this.http.post<any>(`${this.baseUrl}register`, userObj)
+    return this.http.post<any>(`${this.baseUrl}/organizer/register`, userObj)
   }
 
   signIn(loginObj : any){

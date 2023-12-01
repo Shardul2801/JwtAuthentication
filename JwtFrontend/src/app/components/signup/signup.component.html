@@ -23,7 +23,10 @@
                             <small *ngIf="signUpForm.controls['Password'].dirty && signUpForm.hasError('required','Password')" class="text-danger">*Password is required*</small>
 
                             <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="signUpForm.controls['Role'].dirty && signUpForm.hasError('required','Role')"> <span class="fa fa-lock px-2"></span> <input formControlName="Role" [type]="type" placeholder="Role"> <button (click)="hideShowPass()" type="button" class="bg-white text-muted"> <span class="fa {{eyeIcon}}"></span> </button>                                    </div>
+                                <!-- <div class="input-field" [class.error]="signUpForm.controls['Role'].dirty && signUpForm.hasError('required','Role')"> <span class="fa fa-lock px-2"></span> <input formControlName="Role" [type]="type" placeholder="Role"> <button (click)="hideShowPass()" type="button" class="bg-white text-muted"> <span class="fa {{eyeIcon}}"></span> </button>                                    </div> -->
+                                <select id="Role" name="Role">Role</select>
+                                <option value="Admin">Admin</option>
+                                <option value="Organizer">Organizer</option>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Signup</button>
